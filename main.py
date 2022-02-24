@@ -1,10 +1,20 @@
-# This is a sample Python script.
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import uvicorn
+from fastapi import FastAPI
 
 
-# Press the green button in the gutter to run the script.
+app = FastAPI()
+
+
+@app.get("/")
+async def root():
+    return {"message": "API online !"}
+
+
+@app.get("/ping/")
+async def pong():
+    return {"message": "pong"}
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    uvicorn.run(app)
 
