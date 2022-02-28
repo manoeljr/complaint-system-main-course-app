@@ -5,7 +5,12 @@ from db import database
 from resources.routes import api_router
 
 
-app = FastAPI()
+app = FastAPI(
+    title="C.S.M.C.A",
+    description="API REST - Complaint System Main Course App",
+    version="1.0",
+    openapi_url="/docs/json"
+)
 app.include_router(api_router)
 
 
