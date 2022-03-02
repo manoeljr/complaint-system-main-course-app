@@ -3,7 +3,6 @@ from models import complaint, RoleType, State
 
 
 class ComplaintManager:
-
     @staticmethod
     async def get_complaints(user):
         query = complaint.select()
@@ -27,8 +26,16 @@ class ComplaintManager:
 
     @staticmethod
     async def approve(id_):
-        await database.execute(complaint.update().where(complaint.c.id == id_).values(status=State.approved))
+        await database.execute(
+            complaint.update()
+            .where(complaint.c.id == id_)
+            .values(status=State.approved)
+        )
 
     @staticmethod
     async def reject(id_):
-        await database.execute(complaint.update().where(complaint.c.id == id_).values(status=State.rejected))
+        await database.execute(
+            complaint.update()
+            .where(complaint.c.id == id_)
+            .values(status=State.rejected)
+        )

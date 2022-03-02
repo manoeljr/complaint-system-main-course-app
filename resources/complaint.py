@@ -15,7 +15,7 @@ router = APIRouter(tags=["Complaints"])
     "/complaints/",
     dependencies=[Depends(oauth_scheme)],
     response_model=List[ComplaintOut],
-    status_code=200
+    status_code=200,
 )
 async def get_complaints(request: Request):
     user = request.state.user
@@ -26,7 +26,7 @@ async def get_complaints(request: Request):
     "/complaints/",
     dependencies=[Depends(oauth_scheme), Depends(is_complainer)],
     response_model=ComplaintOut,
-    status_code=201
+    status_code=201,
 )
 async def create_complaint(request: Request, complaint: ComplaintIn):
     user = request.state.user
@@ -36,7 +36,7 @@ async def create_complaint(request: Request, complaint: ComplaintIn):
 @router.delete(
     "/complaints/{complaint_id}/",
     dependencies=[Depends(oauth_scheme), Depends(is_admin)],
-    status_code=204
+    status_code=204,
 )
 async def delete_complaint(complaint_id: int):
     await ComplaintManager.delete_complaint(complaint_id)
@@ -45,7 +45,7 @@ async def delete_complaint(complaint_id: int):
 @router.put(
     "/complaints/{complaint_id}/approve/",
     dependencies=[Depends(oauth_scheme), Depends(is_approver)],
-    status_code=204
+    status_code=204,
 )
 async def approve_complaint(complaint_id: int):
     await ComplaintManager.approve(complaint_id)
@@ -54,7 +54,7 @@ async def approve_complaint(complaint_id: int):
 @router.put(
     "/complaints/{complaint_id}/reject",
     dependencies=[Depends(oauth_scheme), Depends(is_approver)],
-    status_code=204
+    status_code=204,
 )
 async def reject_complaint(complaint_id: int):
     await ComplaintManager.reject(complaint_id)

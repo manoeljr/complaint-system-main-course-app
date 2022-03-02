@@ -13,7 +13,7 @@ router = APIRouter(tags=["Users"])
 @router.get(
     "/users/",
     dependencies=[Depends(oauth_scheme), Depends(is_admin)],
-    response_model=List[UserOut]
+    response_model=List[UserOut],
 )
 async def get_users(email: Optional[str] = None):
     if email:
@@ -24,7 +24,7 @@ async def get_users(email: Optional[str] = None):
 @router.put(
     "/users/{user_id}/make-admin/",
     dependencies=[Depends(oauth_scheme), Depends(is_admin)],
-    status_code=204
+    status_code=204,
 )
 async def make_admin(user_id: int):
     await UserManager.change_role(RoleType.admin, user_id)
@@ -33,7 +33,7 @@ async def make_admin(user_id: int):
 @router.put(
     "/users/{user_id}/make-approver/",
     dependencies=[Depends(oauth_scheme), Depends(is_admin)],
-    status_code=204
+    status_code=204,
 )
 async def make_approver(user_id: int):
     await UserManager.change_role(RoleType.approver, user_id)

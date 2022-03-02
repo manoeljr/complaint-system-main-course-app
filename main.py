@@ -1,4 +1,3 @@
-import uvicorn
 from fastapi import FastAPI
 
 from db import database
@@ -9,7 +8,7 @@ app = FastAPI(
     title="C.S.M.C.A",
     description="API REST - Complaint System Main Course App",
     version="1.0",
-    openapi_url="/docs/json"
+    openapi_url="/docs/json",
 )
 app.include_router(api_router)
 
