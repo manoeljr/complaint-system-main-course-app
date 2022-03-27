@@ -5,7 +5,7 @@ from db import database
 from resources.routes import api_router
 
 
-origins = ["http://localhost", "http://localhost:4200"]
+origins = ["http://localhost",]
 
 app = FastAPI(
     title="C.S.M.C.A",
